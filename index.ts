@@ -40,6 +40,11 @@ app.get('/health', (req: Request, res: Response) => {
   res.json({ message: "OK" });
 });
 
+//Simple Html page to tell it's private
+app.get('/', (req: Request, res: Response) => {
+  res.send("This is a private server");
+});
+
 app.post('/upload', checkAuth, (req: Request, res: Response) => {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
