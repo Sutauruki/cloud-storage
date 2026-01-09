@@ -36,6 +36,10 @@ const checkAuth = (req: Request, res: Response, next: NextFunction) => {
   res.status(401).json({ error: "Unauthorized" });
 };
 
+app.get('/health', (req: Request, res: Response) => {
+  res.json({ message: "OK" });
+});
+
 app.post('/upload', checkAuth, (req: Request, res: Response) => {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
